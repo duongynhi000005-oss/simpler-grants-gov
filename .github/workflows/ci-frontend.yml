@@ -49,17 +49,17 @@ jobs:
       - name: Run format
         run: npm run format-check
 
-      - run: npm run test -- --testLocationInResults --json --outputFile=coverage/report.json
-      - uses: ArtiomTr/jest-coverage-report-action@v2
+      - name: Run unit tests
+        run: npm run test -- --testLocationInResults --coverage --json --outputFile=coverage-report.json
+
+      - name: Run coverage report
+        uses: ArtiomTr/jest-coverage-report-action@v2
         with:
-          coverage-file: coverage/report.json
-          test-script: npm test
+          skip-step: all
           working-directory: ./frontend
-          annotations: ${{ github.event.pull_request.head.repo.full_name == github.event.repository.name && 'failed-tests' || 'none' }}
-          package-manager: npm
-          icons: emoji
-          skip-step: none
-          output: ${{ github.event.pull_request.head.repo.full_name == github.event.repository.name && 'comment' || 'report-markdown' }}
+          coverage-file: ./coverage-report.json
+          base-coverage-file: ./coverage-report.json
+          # output: ${{ github.event.pull_request.head.repo.full_name == github.event.repository.name && 'comment' || 'report-markdown' }}
 
   # Confirms the front end still builds successfully
   check-frontend-builds:
