@@ -1,4 +1,21 @@
 {
+  "SGG-104959096-2025-11-17": {
+    "opportunityId": "c5de578a-b5e3-4a70-95ff-c97deb8793a0",
+    "forms": [
+      {
+        "formKey": "sf424",
+        "expectedPrepopulatedFields": {
+          "funding_opportunity_number": "SGG-104959096-2025-11-17",
+          "funding_opportunity_title": "Opportunity for form SF424_4_0",
+          "assistance_listing_number": "10.960",
+          "agency_name": "Simpler Grants.gov",
+          "assistance_listing_program_title": "Technical Agricultural Assistance",
+          "competition_identification_title": "Competition for Opportunity for form SF424_4_0",
+          "certification_agree": "Yes"
+        }
+      }
+    ]
+  },
   "TEST-PRINT-ORG-IND-ON01": {
     "opportunityId": "f21dc67e-84d8-4e2b-ae3e-2d68f83957db",
     "forms": [

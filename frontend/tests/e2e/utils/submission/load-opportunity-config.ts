@@ -1,5 +1,6 @@
 import opportunityRegistry from "tests/e2e/apply/fixtures/print-view-opportunities.json";
 import { PROJECT_ABSTRACT_SUMMARY_FORM_CONFIG } from "tests/e2e/apply/fixtures/project-abstract-summary-field-definitions";
+import { SF424_FORM_CONFIG } from "tests/e2e/apply/fixtures/sf424-field-definitions";
 import type { FillFormConfig } from "tests/e2e/utils/forms/general-forms-filling";
 
 import type {
@@ -26,6 +27,7 @@ function parseFieldValue(value: string): string | RegExp {
  */
 const FORM_CONFIG_REGISTRY: Record<string, FillFormConfig> = {
   projectAbstractSummary: PROJECT_ABSTRACT_SUMMARY_FORM_CONFIG,
+  sf424: SF424_FORM_CONFIG,
 };
 
 /**
@@ -61,8 +63,13 @@ export function loadOpportunityConfig(
       );
     }
 
+    const prepopulatedFieldKeys = new Set(
+      Object.keys(form.expectedPrepopulatedFields),
+    );
+
     const userEnteredFieldTestIds = Object.fromEntries(
       Object.entries(formConfig.fields)
+        .filter(([key]) => !prepopulatedFieldKeys.has(key))
         .map(
           ([key, def]) =>
             [key, def.printTestId ?? def.testId] as [
